@@ -6,9 +6,16 @@ export default defineConfig({
   description: "一个Minecraft资源包",
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
+    notFound: {
+      title: "页面不存在,也许找不到了.",
+      quote: "但如果你不改变方向,继续寻找,你最终可能会到达你想要的地方.",
+      linkText: "返回主页吧",
+      code: "404",
+    },
     nav: [
       { text: '简介', link: 'introduction/getting-started' },
-      { text: '资源包', link: 'resourcepack/resource_list' }
+      { text: '资源包', link: 'resourcepack/resource_list' },
+      { text: '应用程序', link: 'application/MinecraftResourcepacksAutoUpdate' }
     ],
     logo: '/logo.png',
 
@@ -25,11 +32,58 @@ export default defineConfig({
           { text: '资源列表', link: 'resourcepack/resource_list' },
           { text: '功能指南', link: 'resourcepack/function_guide' }
         ]
+      },
+      {
+        text: '应用程序',
+        items: [
+          { text: 'Minecraft资源包自动更新', link: 'application/MinecraftResourcepacksAutoUpdate' }
+        ]
       }
     ],
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
-    ]
+      // { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
+    ],
+    outline: {
+      level: 2,
+      label: "页面导航"
+    },
+    footer: {
+      message: '橘南生 - OrangeSouthborn',
+      copyright: 'MIT License'
+    },
+    externalLinkIcon: true,
+    docFooter: {
+      prev: false,
+      next: false
+    },
+    search: {
+      provider: "local",
+      options: {
+        translations: {
+          button: {
+            buttonText: "搜索文档",
+            buttonAriaLabel: "搜索文档",
+          },
+          modal: {
+            noResultsText: "未找到结果",
+            resetButtonTitle: "清除查询",
+            footer: {
+              selectText: "选择",
+              navigateText: "切换",
+              closeText: "关闭",
+            },
+          },
+        },
+      },
+    },
+    lastUpdatedText: "最后更新时间",
+  },
+  lastUpdated: true,
+  markdown: {
+    image: {
+      // 默认禁用；设置为 true 可为所有图片启用懒加载。
+      lazyLoading: true
+    }
   }
 })

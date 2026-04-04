@@ -14,8 +14,8 @@ hero:
       text: 快速开始
       link: introduction/getting-started
     - theme: alt
-      text: 下载橘南生
-      link: /api-examples
+      text: 应用程序
+      link: application/MinecraftResourcepacksAutoUpdate
     - theme: alt
       text: 了解橘南生
       link: /api-examples
