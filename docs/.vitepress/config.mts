@@ -15,7 +15,8 @@ export default defineConfig({
     nav: [
       { text: '简介', link: 'introduction/getting-started' },
       { text: '资源包', link: 'resourcepack/resource_list' },
-      { text: '应用程序', link: 'application/MinecraftResourcepacksAutoUpdate' }
+      { text: '应用程序', link: 'application/MinecraftResourcepacksAutoUpdate' },
+      { text: '论坛集群', link: 'other/forum_cluster' }
     ],
     logo: '/logo.png',
 
@@ -37,6 +38,13 @@ export default defineConfig({
         text: '应用程序',
         items: [
           { text: 'Minecraft资源包自动更新', link: 'application/MinecraftResourcepacksAutoUpdate' }
+        ]
+      },
+      {
+        text: '其他',
+        items: [
+          { text: '论坛集群', link: 'other/forum_cluster' },
+          { text: '赞助', link: 'other/sponsor' }
         ]
       }
     ],
