@@ -4,8 +4,16 @@ import { defineConfig } from 'vitepress'
 export default defineConfig({
   title: "橘南生 - OrangeSouthborn",
   description: "一个Minecraft资源包",
+  head: [
+    [
+      "link",
+      {
+        rel: "icon",
+        href: "/logo.png", //添加网站ico图标
+      },
+    ]
+  ],
   themeConfig: {
-    // https://vitepress.dev/reference/default-theme-config
     notFound: {
       title: "页面不存在,也许找不到了.",
       quote: "但如果你不改变方向,继续寻找,你最终可能会到达你想要的地方.",

@@ -18,7 +18,7 @@
    - 通过PCL打开版本文件夹;打开PCL-版本设置-概览-版本文件夹;
    ![](/public/PCL-版本文件夹.png)
 3. 设置PCL启动前执行命令
-   ```PCL-启动前执行的命令
+   ```bash
    start /wait "" "{version_path}MinecraftResourcepacksAutoUpdate.exe"
    ```
    - 通过PCL打开版本文件夹;打开PCL-版本设置-设置-高级选项-启动前执行命令;
