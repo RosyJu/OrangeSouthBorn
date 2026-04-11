@@ -24,7 +24,8 @@ export default defineConfig({
       { text: '简介', link: 'introduction/getting-started' },
       { text: '资源包', link: 'resourcepack/resource_list' },
       { text: '应用程序', link: 'application/MinecraftResourcepacksAutoUpdate' },
-      { text: '论坛集群', link: 'other/forum_cluster' }
+      { text: '论坛集群', link: 'other/forum_cluster' },
+      { text: '开发', link: 'development/add_model' }
     ],
     logo: '/logo.png',
 
@@ -46,6 +47,13 @@ export default defineConfig({
         text: '应用程序',
         items: [
           { text: 'Minecraft资源包自动更新', link: 'application/MinecraftResourcepacksAutoUpdate' }
+        ]
+      },
+      {
+        text: '参与开发',
+        items: [
+          { text: '添加模型', link: 'development/add_model' },
+          { text: '物品标签', link: 'development/item_tag' }
         ]
       },
       {

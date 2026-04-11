@@ -4,13 +4,14 @@
 
 <ItemModel :imgUrl="`/modelImg/${modelInfo.enName}/image.png`"></ItemModel>
 
-## 别名
+## 铁砧可用命名
 
 <ul>
   <li v-for="(item, index) in modelInfo.name" :key="index">
     {{ item }}
   </li>
 </ul>
+
 
 ## 可用物品
 
