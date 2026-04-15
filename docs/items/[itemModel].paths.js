@@ -3,9 +3,9 @@ import modelInfo from "../public/item/modelInfo.json";
 export default {
   paths() {
     let path = [];
-    for (let model in modelInfo) {
+    for (let model of modelInfo) {
       path.push({
-        params: { itemModel: modelInfo[model], name: modelInfo[model] },
+        params: { itemModel: model },
       });
     }
     return path;

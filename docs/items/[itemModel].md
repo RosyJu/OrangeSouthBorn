@@ -18,15 +18,11 @@
 <ItemList :itemList="modelInfo.item"></ItemList>
 
 <script lang='ts' setup>
-    import {ref} from 'vue'
+    import {ref, onMounted} from 'vue'
     import { useData } from 'vitepress'
     import ItemModel from '../components/itemModel.vue'
     import ItemList from '../components/itemList.vue'
     const { params } = useData()
-    // console.log(params)
-
-// 动态加载 JSON
-    // const data = await import(`/modelData/${params.value.name}.json`)
 
     const modelInfo = ref({
         name: [],
@@ -34,11 +30,12 @@
         item: []
     })
 
-    async function loadData() {
-        const res = await import(`../modelData/${params.value.name}.json`)
-        modelInfo.value.name = res.default.name
-        modelInfo.value.enName = res.default.enName
-        modelInfo.value.item = res.default.item
-    }
-    loadData()
+    onMounted(async () => {
+        if (params.value && params.value.itemModel) {
+            const res = await import(`../modelData/${params.value.itemModel}.json`)
+            modelInfo.value.name = res.default.name
+            modelInfo.value.enName = res.default.enName
+            modelInfo.value.item = res.default.item
+        }
+    })
 </script>
