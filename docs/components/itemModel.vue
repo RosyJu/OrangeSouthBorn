@@ -2,7 +2,7 @@
 <template>
     <div class="core">
         <div class="image">
-            <img :src="imgUrl" alt="">
+            <img ref="imgRef" :src="isLoaded ? imgUrl : ''" alt="">
         </div>
     </div>
 </template>
@@ -11,11 +11,40 @@
 
 <!-- ------------------------------script------------------------------ -->
 <script lang='ts' setup>
+import { ref, onMounted, onUnmounted } from 'vue'
 
     const props = defineProps({
         imgUrl: String
     })
 
+    const imgRef = ref<HTMLImageElement | null>(null)
+    const isLoaded = ref(false)
+    let observer: IntersectionObserver | null = null
+
+    onMounted(() => {
+        if (imgRef.value) {
+            observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        isLoaded.value = true
+                        if (observer && imgRef.value) {
+                            observer.unobserve(imgRef.value)
+                        }
+                    }
+                })
+            }, {
+                rootMargin: '100px'
+            })
+
+            observer.observe(imgRef.value)
+        }
+    })
+
+    onUnmounted(() => {
+        if (observer) {
+            observer.disconnect()
+        }
+    })
 </script>
 
 
