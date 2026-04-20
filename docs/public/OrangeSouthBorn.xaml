@@ -1,0 +1,51 @@
+﻿<local:MyHint Margin="0,0,0,15" Theme="Blue" Text="回声洞 : {cave}" />
+
+<local:MyCard Title="橘南生 - 生态群" Margin="0,0,0,15" CanSwap="True" IsSwapped="False">
+    <StackPanel Margin="25,40,23,15">
+        <local:MyListItem  Margin="-5,2,-5,8" Logo="https://docs.rosyju.top/logo.png" Title="橘南生 - 资源包" Info="一款只需要改名即可修改物品模型的资源包等等" EventType="打开网页" EventData="https://docs.rosyju.top" Type="Clickable" />
+    </StackPanel>
+</local:MyCard>
+
+<local:MyCard Title="Minecraft命令行客户端" Margin="0,0,0,15" CanSwap="True" IsSwapped="False">
+    <StackPanel Margin="25,40,23,15">
+        <local:MyListItem  Margin="-5,2,-5,8" Logo="https://mccteam.github.io/images/MCC_logo.png" Title="Minecraft命令行客户端" Info="Minecraft 控制台客户端 (MCC) 是一个基于 C# 的轻量化开源 Minecraft Java 客户端。" EventType="打开网页" EventData="https://mccteam.github.io/l10n/zh-Hans/" Type="Clickable" />
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <local:MyButton Margin="0,0,10,0" Width="100" Height="35" ColorType="Highlight" Text="启动" ToolTip="启动Minecraft命令行客户端">
+                <local:CustomEventService.Events>
+                    <local:CustomEventCollection>
+                        <local:CustomEvent Type="执行命令" Data="{minecraft}MinecraftClient\MinecraftClient.exe" />
+                        <local:CustomEvent Type="弹出提示" Data="正在启动Minecraft命令行客户端..." />
+                    </local:CustomEventCollection>
+                </local:CustomEventService.Events>
+            </local:MyButton>
+            <local:MyButton Margin="0,0,10,0" Width="100" Height="35" ColorType="Highlight" Text="配置" ToolTip="打开Minecraft命令行客户端配置文件">
+                <local:CustomEventService.Events>
+                    <local:CustomEventCollection>
+                        <local:CustomEvent Type="执行命令" Data="{minecraft}MinecraftClient\MinecraftClient.ini" />
+                        <local:CustomEvent Type="弹出提示" Data="正在打开Minecraft命令行客户端配置文件..." />
+                    </local:CustomEventCollection>
+                </local:CustomEventService.Events>
+            </local:MyButton>
+        </StackPanel>
+    </StackPanel>
+</local:MyCard>
+
+<local:MyCard Title="百科全书" Margin="0,0,0,15" CanSwap="True" IsSwapped="False">
+    <StackPanel Margin="25,40,23,15">
+        <local:MyListItem  Margin="-5,2,-5,8" Logo="" Title="Modrinth" Info="汇聚Minecraft各类资源" EventType="打开网页" EventData="https://modrinth.com/" Type="Clickable" />
+        <local:MyListItem  Margin="-5,2,-5,8" Logo="" Title="CurseForge" Info="Minecraft Mods on CurseForge" EventType="打开网页" EventData="https://www.curseforge.com/minecraft" Type="Clickable" />
+        <local:MyListItem  Margin="-5,2,-5,8" Logo="" Title="MC百科" Info="最大的Minecraft中文MOD" EventType="打开网页" EventData="https://www.mcmod.cn/" Type="Clickable" />
+        <local:MyListItem  Margin="-5,2,-5,8" Logo="" Title="Minecraft Wiki" Info="中文 Minecraft Wiki" EventType="打开网页" EventData="https://zh.minecraft.wiki/" Type="Clickable" />
+    </StackPanel>
+</local:MyCard>
+
+<local:MyCard Title="整合包默认按键设置" Margin="0,0,0,15" CanSwap="True" IsSwapped="False">
+    <StackPanel Margin="25,40,23,15">
+        <local:MyHint Margin="0,0,0,0" Theme="Blue" Text="BACKSLASH : 开/关强制疾跑" />
+        <local:MyHint Margin="0,0,0,0" Theme="Red" Text="P : 打开大地图" />
+        <local:MyHint Margin="0,0,0,0" Theme="Blue" Text="Shift+Ctrl+P : 开/关玩家透视" />
+        <local:MyHint Margin="0,0,0,0" Theme="Red" Text="Shift+Ctrl+V : 开/关夜视" />
+        <local:MyHint Margin="0,0,0,0" Theme="Blue" Text="Shift+Ctrl+T : 开/关自动工具" />
+        <local:MyHint Margin="0,0,0,0" Theme="Red" Text="Shift+Ctrl+E : 开/关自动吃" />
+    </StackPanel>
+</local:MyCard>

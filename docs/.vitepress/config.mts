@@ -1,4 +1,4 @@
-import { defineConfig } from 'vitepress'
+import { defineConfig } from "vitepress";
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -11,7 +11,7 @@ export default defineConfig({
         rel: "icon",
         href: "/logo.png", //添加网站ico图标
       },
-    ]
+    ],
   ],
   themeConfig: {
     notFound: {
@@ -21,48 +21,53 @@ export default defineConfig({
       code: "404",
     },
     nav: [
-      { text: '简介', link: 'introduction/getting-started' },
-      { text: '资源包', link: 'resourcepack/resource_list' },
-      { text: '应用程序', link: 'application/MinecraftResourcepacksAutoUpdate' },
-      { text: '论坛集群', link: 'other/forum_cluster' },
-      { text: '开发', link: 'development/add_model' }
+      { text: "简介", link: "introduction/getting-started" },
+      { text: "资源包", link: "resourcepack/resource_list" },
+      {
+        text: "应用程序",
+        link: "application/MinecraftResourcepacksAutoUpdate",
+      },
+      { text: "论坛集群", link: "other/forum_cluster" },
+      { text: "开发", link: "development/add_model" },
     ],
-    logo: '/logo.png',
+    logo: "/logo.png",
 
     sidebar: [
       {
-        text: '简介',
-        items: [
-          { text: '快速开始', link: 'introduction/getting-started' }
-        ]
+        text: "简介",
+        items: [{ text: "快速开始", link: "introduction/getting-started" }],
       },
       {
-        text: '资源包',
+        text: "资源包",
         items: [
-          { text: '资源列表', link: 'resourcepack/resource_list' },
-          { text: '功能指南', link: 'resourcepack/function_guide' }
-        ]
+          { text: "资源列表", link: "resourcepack/resource_list" },
+          { text: "功能指南", link: "resourcepack/function_guide" },
+        ],
       },
       {
-        text: '应用程序',
+        text: "应用程序",
         items: [
-          { text: 'Minecraft资源包自动更新', link: 'application/MinecraftResourcepacksAutoUpdate' }
-        ]
+          {
+            text: "Minecraft资源包自动更新",
+            link: "application/MinecraftResourcepacksAutoUpdate",
+          },
+        ],
       },
       {
-        text: '参与开发',
+        text: "参与开发",
         items: [
-          { text: '添加模型', link: 'development/add_model' },
-          { text: '物品标签', link: 'development/item_tag' }
-        ]
+          { text: "添加模型", link: "development/add_model" },
+          { text: "物品标签", link: "development/item_tag" },
+        ],
       },
       {
-        text: '其他',
+        text: "其他",
         items: [
-          { text: '论坛集群', link: 'other/forum_cluster' },
-          { text: '赞助', link: 'other/sponsor' }
-        ]
-      }
+          { text: "论坛集群", link: "other/forum_cluster" },
+          { text: "常见问题", link: "other/FAQ" },
+          { text: "赞助", link: "other/sponsor" },
+        ],
+      },
     ],
 
     socialLinks: [
@@ -70,16 +75,16 @@ export default defineConfig({
     ],
     outline: {
       level: 2,
-      label: "页面导航"
+      label: "页面导航",
     },
     footer: {
-      message: '橘南生 - OrangeSouthborn',
-      copyright: 'MIT License'
+      message: "橘南生 - OrangeSouthborn",
+      copyright: "MIT License",
     },
     externalLinkIcon: true,
     docFooter: {
       prev: false,
-      next: false
+      next: false,
     },
     search: {
       provider: "local",
@@ -107,7 +112,7 @@ export default defineConfig({
   markdown: {
     image: {
       // 默认禁用；设置为 true 可为所有图片启用懒加载。
-      lazyLoading: true
-    }
-  }
-})
+      lazyLoading: true,
+    },
+  },
+});
