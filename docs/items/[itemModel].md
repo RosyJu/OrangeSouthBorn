@@ -1,17 +1,14 @@
 # 模型数据
 
-##  {{modelInfo.name[0]}}
+## {{modelInfo.name[0]}}
 
 <ItemModel :imgUrl="`/modelImg/${modelInfo.enName}/image.png`"></ItemModel>
 
-## 铁砧可用命名
+## 铁砧可用命名 - 点击复制
 
-<ul>
-  <li v-for="(item, index) in modelInfo.name" :key="index">
-    {{ item }}
-  </li>
-</ul>
-
+<div v-for="(item, index) in modelInfo.name" :key="index" @click="copyItem(item)" style="cursor:pointer;">
+  <code>{{ item }}</code>
+</div>
 
 ## 可用物品
 
@@ -38,4 +35,8 @@
             modelInfo.value.item = res.default.item
         }
     })
+
+    const copyItem = (item) => {
+      navigator.clipboard.writeText(item)
+    }
 </script>

@@ -1,6 +1,14 @@
+
 # vuepress build output
 docs/.vitepress/dist
 docs/.vitepress/cache
 
 # Node.js
 node_modules
+package-lock.json
+
+# mineflayer
+
+mineflayer/node_modules
+mineflayer/config.yml
+mineflayer/package-lock.json
