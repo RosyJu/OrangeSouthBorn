@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "start": "node main/main2.js"
+    "start": "node main/main2.js",
+    "customcrops": "node main/customcrops.js"
   },
   "dependencies": {
     "ansi-escapes": "^7.3.0",

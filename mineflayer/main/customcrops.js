@@ -5,7 +5,7 @@ const readline = require("readline");
 const consola = require("consola");
 const rightblock = require("../modules/rightBlock");
 const sel = require("../modules/sel");
-const config = require("../modules/config");
+// const config = require("../modules/config");
 const getInventory = require("../modules/getInventory");
 const setItemSlot = require("../modules/setItemSlot");
 const removeItem = require("../modules/removeItem");
@@ -107,7 +107,17 @@ async function main() {
   destroyAll();
   isRestarting = false;
 
-  bot = new mineflayer.createBot(config.value);
+  bot = mineflayer.createBot({
+    auth: "microsoft",
+    username: "",
+    password: "",
+    host: "mcyh.top",
+    port: "",
+    version: "",
+    hideErrors: true,
+    brand: "vanilla",
+    physicsEnabled: true,
+  });
 
   bot.on("resourcePack", () => {
     safeLog("📦 自动接受资源包");
@@ -295,18 +305,6 @@ function parseCommand(str) {
 }
 
 async function autoStart(bot) {
-  try {
-    await script.customcrops2.customcrops(
-      bot,
-      { point: { x: -108636, y: 271, z: 137763 }, x: 9, z: 15 },
-      3,
-      rl,
-    );
-  } catch (error) {
-    bot.end();
-    safeLog(`发生错误 : ${error.message}`);
-    return;
-  }
 }
 
 main();

@@ -29,7 +29,7 @@ export async function customcrops(bot, goalInfo, waterHeight, rl) {
       consola.log("❌ 错误：" + error.message);
     }
   }
-  await sleep(3000);
+  await sleep(1000);
   if (!goalInfo) return;
 
   let goals = { x: [], z: [] };
@@ -43,10 +43,12 @@ export async function customcrops(bot, goalInfo, waterHeight, rl) {
     goalInfo.point.z = goalInfo.point.z + 5;
   }
 
-  console.log(goals.z);
+  // console.log(goals.z);
 
   // 真正的 S 型路线遍历
   while (true) {
+    await bot.chat("/home xlg")
+    await bot.waitForTicks(80);
     for (let x = 0; x < goals.x.length; x++) {
       const currentX = goals.x[x];
       const y = goalInfo.point.y;
@@ -93,10 +95,6 @@ export async function customcrops(bot, goalInfo, waterHeight, rl) {
           }
         }
       }
-      // x++;
-      // if (x == goals.x.length) {
-      //   x = 0;
-      // }
     }
   }
 }
@@ -142,121 +140,41 @@ async function safemove(bot, x, y, z, waterHeight, goals, safeLog) {
     }
 
     await rightClickBlockFace(bot, [x, y, z]);
-    // await bot.waitForTicks(5);
-    for (let i = 0; i < 5; i++) {
-      // await bot.waitForTicks(5);
-      let item_display = await rightEntity(bot, "interaction");
-      // await bot.waitForTicks(1);
+    await bot.lookAt(vec3(x, y - 1, z));
+    await bot.waitForTicks(1);
+    // bot.look(0,90)
+    let item_display = await rightEntity(bot, "interaction");
+    for (let i = 0; i < 3; i++) {
+      // let item_display = await rightEntity(bot, "interaction");
       if (item_display) {
-        await bot.activateEntityAt(
+        bot.activateEntityAt(
           item_display,
-          item_display.position.offset(0, 0.5, 0),
+          item_display.position.offset(0, 0.1, 0),
         );
       }
-      await bot.waitForTicks(3);
+      await bot.waitForTicks(1);
     }
     await bot.waitForTicks(1);
 
     await setItemSlot(bot, 9);
 
-    for (let i = 0; i < 3; i++) {
-      if (i < 2) {
+    await bot.waitForTicks(1);
+
+    await eat(bot, "apple");
+
+    for (let i = 0; i < 2; i++) {
+      // if (i < 2) {
         for (let plantX = -2; plantX <= 2; plantX++) {
+          // await bot.waitForTicks(1);
           for (let plantZ = -2; plantZ <= 2; plantZ++) {
             let heldItem = bot.heldItem;
             if (heldItem) {
               await removeItem(bot, heldItem.slot);
             }
             await rightClickBlockFace(bot, [x + plantX, y, z + plantZ]);
+            // await bot.waitForTicks(1);
           }
         }
-      } else if (i == 2) {
-        function checkZ(array, z) {
-          // 判断是不是真数组
-          if (!Array.isArray(array)) {
-            return -1;
-          }
-          return array.indexOf(z);
-        }
-
-        let items = await getInventory(bot);
-
-        let seed = {
-          火龙果: await findMatchingItems(items, {
-            id: "sugar",
-            name: "火龙果种子",
-          }),
-          葡萄: await findMatchingItems(items, {
-            id: "sugar",
-            name: "葡萄种子",
-          }),
-          辣椒: await findMatchingItems(items, {
-            id: "sugar",
-            name: "辣椒种子",
-          }),
-        };
-        let seedBool = { 火龙果: false, 葡萄: false, 辣椒: false };
-        if (seed.火龙果.length) {
-          await setItemSlot(bot, seed.火龙果[0].slot);
-          await setItemSlot(bot, 10);
-          seedBool.火龙果 = true;
-          bot.waitForTicks(1);
-        }
-        if (seed.葡萄.length) {
-          await setItemSlot(bot, seed.葡萄[0].slot);
-          await setItemSlot(bot, 11);
-          seedBool.葡萄 = true;
-          bot.waitForTicks(1);
-        }
-        if (seed.辣椒.length) {
-          await setItemSlot(bot, seed.辣椒[0].slot);
-          await setItemSlot(bot, 12);
-          seedBool.辣椒 = true;
-          bot.waitForTicks(1);
-        }
-
-        await bot.waitForTicks(1);
-
-        await eat(bot, "apple");
-
-        for (let i = 13; i < 30; i++) {
-          await removeItem(bot, i);
-        }
-        let check = checkZ(goals.z, z) + 1;
-        if (check != 0) {
-          if (check >= 1 && check < 6 && seedBool.火龙果) {
-            safeLog("片区:" + check + " 火龙果");
-            await setItemSlot(bot, 10);
-            bot.waitForTicks(1);
-            for (let plantX = -2; plantX <= 2; plantX++) {
-              for (let plantZ = -2; plantZ <= 2; plantZ++) {
-                await rightClickBlockFace(bot, [x + plantX, y - 1, z + plantZ]);
-              }
-            }
-            await setItemSlot(bot, 10);
-          } else if (check >= 6 && check < 11 && seedBool.葡萄) {
-            safeLog("片区:" + check + " 葡萄");
-            await setItemSlot(bot, 11);
-            bot.waitForTicks(1);
-            for (let plantX = -2; plantX <= 2; plantX++) {
-              for (let plantZ = -2; plantZ <= 2; plantZ++) {
-                await rightClickBlockFace(bot, [x + plantX, y - 1, z + plantZ]);
-              }
-            }
-            await setItemSlot(bot, 11);
-          } else if (check >= 11 && check < 16 && seedBool.辣椒) {
-            safeLog("片区:" + check + " 辣椒");
-            await setItemSlot(bot, 12);
-            bot.waitForTicks(1);
-            for (let plantX = -2; plantX <= 2; plantX++) {
-              for (let plantZ = -2; plantZ <= 2; plantZ++) {
-                await rightClickBlockFace(bot, [x + plantX, y - 1, z + plantZ]);
-              }
-            }
-            await setItemSlot(bot, 12);
-          }
-        }
-      }
     }
   }
   return true;
