@@ -12,3 +12,7 @@ package-lock.json
 mineflayer/node_modules
 mineflayer/config.yml
 mineflayer/package-lock.json
+
+#tool 
+*.zip
+tool/node
