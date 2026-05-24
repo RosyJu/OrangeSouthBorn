@@ -1,1 +1,1 @@
-npm run start
+node main/main2.js

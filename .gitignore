@@ -16,3 +16,4 @@ mineflayer/package-lock.json
 #tool 
 *.zip
 tool/node
+tool/temp

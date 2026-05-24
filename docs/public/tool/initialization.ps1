@@ -31,7 +31,7 @@ try {
 
     # 4. Move all contents directly to target directory (remove root folder)
     $sourceContent = Join-Path $tempExtract $innerFolder
-    Get-ChildItem $sourceContent | Move-Item -Destination $finalDir -Force
+    Get-ChildItem $sourceContent | Move-Item -Destination $finalDir -Force -ErrorAction SilentlyContinue
 
     # 5. Clean up temporary files
     Remove-Item -Path $tempExtract -Recurse -Force
@@ -41,19 +41,24 @@ try {
     Write-Host "Creating package.json..." -ForegroundColor Cyan
     $packageContent = @'
 {
+  "script": {
+    "build": "node build.js"
+  },
   "dependencies": {
+    "archiver": "^8.0.0",
     "fs": "^0.0.1-security",
     "path": "^0.12.7",
     "yaml": "^2.9.0"
   }
 }
+
 '@
     # Write the content to file (UTF-8 without BOM)
     $utf8NoBom = New-Object System.Text.UTF8Encoding $false
     [System.IO.File]::WriteAllText($packageJsonPath, $packageContent, $utf8NoBom)
 
-    Write-Host "`n✅ Done! Node.js has been extracted to: $finalDir" -ForegroundColor Green
-    Write-Host "✅ package.json created successfully" -ForegroundColor Green
+    Write-Host "`n Done! Node.js has been extracted to: $finalDir" -ForegroundColor Green
+    Write-Host " package.json created successfully" -ForegroundColor Green
     Write-Host "You can use node.exe and npm.exe directly" -ForegroundColor White
 }
 catch {
@@ -63,9 +68,12 @@ catch {
 
 ./node/npm i
 
-# 获取https://docs.rosyju.top/start.js的内容并用node执行
-$startJsUrl = "https://docs.rosyju.top/start.js"
-$startJsPath = Join-Path $targetRoot "start.js"
+$startJsUrl = "https://docs.rosyju.top/tool/start.js"
+$startDir = Join-Path $targetRoot "start"
+if (-not (Test-Path $startDir)) {
+    New-Item -ItemType Directory -Path $startDir | Out-Null
+}
+$startJsPath = Join-Path $startDir "start.js"
 Write-Host "Downloading start.js..." -ForegroundColor Cyan
 Invoke-WebRequest -Uri $startJsUrl -OutFile $startJsPath -UseBasicParsing
 Write-Host "Executing start.js..." -ForegroundColor Cyan
