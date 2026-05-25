@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "build": "./node/node build.js"
+    "build": "/node/node.exe build.js"
   },
   "dependencies": {
     "adm-zip": "^0.5.17",

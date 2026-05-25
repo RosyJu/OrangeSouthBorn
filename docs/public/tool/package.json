@@ -1,0 +1,11 @@
+{
+  "scripts": {
+    "build": "/node/node.exe build.js"
+  },
+  "dependencies": {
+    "adm-zip": "^0.5.17",
+    "fs": "^0.0.1-security",
+    "path": "^0.12.7",
+    "yaml": "^2.9.0"
+  }
+}
