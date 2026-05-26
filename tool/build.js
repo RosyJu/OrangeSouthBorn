@@ -35,3 +35,8 @@ log.info("✅ package.json复制完成!");
 fs.copyFileSync("./start.exe", "../docs/public/tool/start.exe");
 
 log.info("✅ start.exe复制完成!");
+
+fs.copyFileSync("./public/url.yml", "../docs/public/tool/url.yml");
+
+log.info("✅ url.yml复制完成!");
+
