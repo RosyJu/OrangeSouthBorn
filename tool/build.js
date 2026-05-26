@@ -5,6 +5,7 @@ const log = require("./modules/log.js");
 // 完全保留你原来的配置
 const fileDirList = {
   modules: "./modules",
+  AutoResourcePackUpdate: "./AutoResourcePackUpdate"
 };
 
 // 创建输出目录
@@ -25,12 +26,12 @@ for (let key in fileDirList) {
 
 zip.writeZip("../docs/public/tool/tool.zip");
 
-console.log("✅ 压缩完成！");
+console.log("✅ 压缩完成!");
 
 fs.copyFileSync("./package.json", "../docs/public/tool/package.json");
 
-log.info("✅ package.json复制完成！");
+log.info("✅ package.json复制完成!");
 
 fs.copyFileSync("./start.exe", "../docs/public/tool/start.exe");
 
-log.info("✅ start.exe复制完成！");
+log.info("✅ start.exe复制完成!");

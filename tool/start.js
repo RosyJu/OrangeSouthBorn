@@ -1,6 +1,7 @@
 const fs = require("fs");
 const https = require("https");
 const AdmZip = require("adm-zip");
+const { execSync } = require('child_process');
 
 const log = require("./modules/log.js");
 
@@ -49,10 +50,10 @@ const main = async () => {
     });
   };
   const buffer = {
-    node: {
-      url: "https://nodejs.org/dist/v22.22.3/node-v22.22.3-win-x64.zip",
-      path: "/",
-    },
+    // node: {
+    //   url: "https://nodejs.org/dist/v22.22.3/node-v22.22.3-win-x64.zip",
+    //   path: "/",
+    // },
     package: { url: "https://docs.rosyju.top/tool/package.json", path: "/" },
     tool: { url: "https://docs.rosyju.top/tool/tool.zip", path: "/" },
   };
@@ -115,6 +116,47 @@ const main = async () => {
   } else {
     log.error("未找到 Node.js zip 文件！");
   }
+
+  // 解压下载的https://docs.rosyju.top/tool/tool.zip文件,直接铺开在当前目录
+  const toolZipPath = "tool.zip";
+
+  if (fs.existsSync(toolZipPath)) {
+    log.info("正在解压 tool.zip...");
+    
+    // 使用 adm-zip 解压
+    const zip = new AdmZip(toolZipPath);
+    
+    // 获取 zip 中的所有条目
+    const zipEntries = zip.getEntries();
+    
+    // 解压文件到当前目录
+    zipEntries.forEach((entry) => {
+      if (!entry.isDirectory) {
+        const targetPath = entry.entryName;
+        
+        // 确保目标目录存在
+        const targetDir = targetPath.substring(0, targetPath.lastIndexOf("/"));
+        if (targetDir) {
+          fs.mkdirSync(targetDir, { recursive: true });
+        }
+        
+        // 写入文件
+        fs.writeFileSync(targetPath, entry.getData());
+      }
+    });
+    
+    log.info("✅ tool.zip 解压完成！");
+    
+    // 清理 zip 文件
+    fs.unlinkSync(toolZipPath);
+    log.info("已清理 tool.zip 文件");
+  } else {
+    log.error("未找到 tool.zip 文件！");
+  }
+
+  execSync('.\\node\\npm i', {
+    stdio: 'inherit'  // 关键：让控制台输出安装日志
+});
 
 };
 
