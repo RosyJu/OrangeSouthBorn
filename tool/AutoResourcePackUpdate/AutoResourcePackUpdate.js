@@ -14,7 +14,7 @@ const saveFolder = process.argv[2]; // 从命令行第三个参数获取保存�
 
 // 检查是否传入参数
 if (!saveFolder) { // 如果没有传入保存文件夹参数
-  log.info("错误：请传入资源包保存文件夹路径！"); // 输出错误提示信息
+  log.info("错误：请传入资源包保存文件夹路径!"); // 输出错误提示信息
   process.exit(1); // 终止程序，退出码为1表示有错误
 }
 
@@ -44,7 +44,7 @@ async function main() { // 定义主函数，使用async支持异步操作
     await urlTest(urlList); // 异步测试所有直链的可用性
 
     if (!urlFile.url || urlFile.size <= 0) { // 如果没有找到可用的URL或文件大小无效
-      log.info("所有直链均不可用！"); // 输出提示信息
+      log.info("所有直链均不可用!"); // 输出提示信息
       return; // 提前返回，结束程序
     }
 
@@ -155,12 +155,12 @@ async function downloadFile(url, savePath) { // 定义异步函数，用于下�
         chunks.push(chunk); // 将数据块添加到数组
         downloaded += chunk.length; // 累加已下载字节数
         const p = ((downloaded / total) * 100).toFixed(1); // 计算下载百分比（保留1位小数）
-        process.stdout.write(`\r下载进度：${p}%`); // 输出下载进度（覆盖同一行）
+        log.info.raw(`下载进度：${p}%`); // 输出下载进度（覆盖同一行）
       });
 
       res.on("end", () => { // 监听end事件，数据接收完成
         fs.writeFileSync(savePath, Buffer.concat(chunks)); // 将所有数据块合并并写入文件
-        process.stdout.write(`\r下载完成！\n`); // 输出下载完成提示
+        log.info(`下载完成!`); // 输出下载完成提示
         resolve(); // 解析Promise
       });
 
